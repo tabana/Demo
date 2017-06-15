@@ -28,8 +28,21 @@ namespace DemoTest
       var stringWriter = new StringWriter(stringBuilder);
 
       Demo.Program.DemoMergeSort(stringWriter, new string[] { "-generate", "10", "10" });
+      int i;
+      var result = (new List<string>(stringBuilder.ToString().Trim().Split(new char[] { ' ' }))).Select(s => int.TryParse(s, out i));
 
-      Assert.IsTrue(true);
+      Assert.IsTrue(!result.Any(b => b == false));
+    }
+
+    [TestMethod]
+    public void DemoMergeSortDisplaysHelpOnInvalidInput()
+    {
+      var stringBuilder = new StringBuilder();
+      var stringWriter = new StringWriter(stringBuilder);
+
+      Demo.Program.DemoMergeSort(stringWriter, new string[] { "invalid input" });
+
+      Assert.AreEqual(stringBuilder.ToString().Trim(), Demo.Program.HelpText);
     }
   }
 }
