@@ -33,6 +33,9 @@ namespace Demo
         return;
       }
 
+      var algorithms = new Algorithms();
+      algorithms.MergeSort(ints).Wait();
+
       Console.Write("Result ");
       foreach (int i in ints) { output.Write(i.ToString() + " "); }
     }
